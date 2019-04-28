@@ -1,8 +1,10 @@
-from subprocess import Popen, PIPE
 from os import stat, path, remove
-from pytube import YouTube
-from time import sleep
 from re import sub
+from subprocess import Popen, PIPE
+from time import sleep
+
+from pytube import YouTube
+
 VALID_AV_TYPES = ['mp4', 'webm']
 
 
@@ -45,7 +47,7 @@ def get_best_streams(yt):
     return best_video, video_ext, best_audio, audio_ext, yt_title, yt_fps
 
 
-def progress_bar(length=25,progress=0):
+def progress_bar(length=25, progress=0):
     """Return a nice progress bar"""
     bar = '['
     if progress <= 0:  # prevent div by 0
@@ -139,7 +141,7 @@ if __name__ == '__main__':
                 if len(input_list) == 1:
                     error_msg = 'No streams found or downloading error:\n' + str(e)
                 else:
-                    error_msg = 'No streams found or downloading error for video\n'\
+                    error_msg = 'No streams found or downloading error for video\n' \
                                 + str(input_list.index(link) + 1) + ' in list.\n(%s)\n%s' % (link, str(e))
                 print(error_msg)
 
@@ -161,4 +163,3 @@ if __name__ == '__main__':
                 print(str(e))
     print("Press the 'any' key to exit")
     input()
-
